@@ -54,7 +54,6 @@ export function RecentSales() {
                 <AvatarImage src={sale.avatar} alt='Avatar' />
                 <AvatarFallback>{sale.fallback}</AvatarFallback>
               </Avatar>
-              {/* BUG: flex-1 without min-w-0 causes flex children to overflow into price */}
               <div className='ml-4 space-y-1 flex-1'>
                 <p className='text-sm leading-none font-medium whitespace-nowrap'>{sale.name}</p>
                 <p className='text-muted-foreground text-sm whitespace-nowrap'>{sale.email}</p>
