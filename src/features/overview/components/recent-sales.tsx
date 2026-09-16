@@ -3,8 +3,8 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/com
 
 const salesData = [
   {
-    name: 'Olivia Martin',
-    email: 'olivia.martin@email.com',
+    name: 'Olivia Martin (Senior Vice President & Regional Executive Lead Director)',
+    email: 'olivia.martin.extended.enterprise.user.account.name@organization-domain-long-name.com',
     avatar: 'https://api.slingacademy.com/public/sample-users/1.png',
     fallback: 'OM',
     amount: '+$1,999.00'
@@ -50,15 +50,16 @@ export function RecentSales() {
         <div className='space-y-8'>
           {salesData.map((sale, index) => (
             <div key={index} className='flex items-center'>
-              <Avatar className='h-9 w-9'>
+              <Avatar className='h-9 w-9 shrink-0'>
                 <AvatarImage src={sale.avatar} alt='Avatar' />
                 <AvatarFallback>{sale.fallback}</AvatarFallback>
               </Avatar>
-              <div className='ml-4 space-y-1'>
-                <p className='text-sm leading-none font-medium'>{sale.name}</p>
-                <p className='text-muted-foreground text-sm'>{sale.email}</p>
+              {/* BUG: flex-1 without min-w-0 causes flex children to overflow into price */}
+              <div className='ml-4 space-y-1 flex-1'>
+                <p className='text-sm leading-none font-medium whitespace-nowrap'>{sale.name}</p>
+                <p className='text-muted-foreground text-sm whitespace-nowrap'>{sale.email}</p>
               </div>
-              <div className='ml-auto font-medium'>{sale.amount}</div>
+              <div className='ml-auto font-medium shrink-0'>{sale.amount}</div>
             </div>
           ))}
         </div>
