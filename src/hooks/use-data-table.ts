@@ -187,8 +187,8 @@ export function useDataTable<TData>(props: UseDataTableProps<TData>) {
   const [filterValues, setFilterValues] = useQueryStates(filterParsers);
 
   const debouncedSetFilterValues = useDebouncedCallback((values: typeof filterValues) => {
-    void setPage(1);
     void setFilterValues(values);
+    void setPage(page > 1 ? page : 1);
   }, debounceMs);
 
   const initialColumnFilters: ColumnFiltersState = React.useMemo(() => {
