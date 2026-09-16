@@ -2,6 +2,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/query-client';
 import { searchParamsCache } from '@/lib/searchparams';
 import { productsQueryOptions } from '../api/queries';
+import type { ProductFilters } from '../api/types';
 import { ProductTable } from './product-tables';
 
 export default function ProductListingPage() {
@@ -11,7 +12,7 @@ export default function ProductListingPage() {
   const categories = searchParamsCache.get('category');
   const sort = searchParamsCache.get('sort');
 
-  const filters = {
+  const filters: ProductFilters = {
     page,
     limit: pageLimit,
     ...(search && { search }),

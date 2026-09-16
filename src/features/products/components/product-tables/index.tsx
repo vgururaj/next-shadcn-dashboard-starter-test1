@@ -7,6 +7,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { parseAsInteger, parseAsString, useQueryStates } from 'nuqs';
 import { getSortingStateParser } from '@/lib/parsers';
 import { productsQueryOptions } from '../../api/queries';
+import type { ProductFilters } from '../../api/types';
 import { columns } from './columns';
 
 const columnIds = columns.map((c) => c.id).filter(Boolean) as string[];
@@ -20,12 +21,12 @@ export function ProductTable() {
     sort: getSortingStateParser(columnIds).withDefault([])
   });
 
-  const filters = {
+  const filters: ProductFilters = {
     page: params.page,
     limit: params.perPage,
     ...(params.name && { search: params.name }),
     ...(params.category && { categories: params.category }),
-    ...(params.sort.length > 0 && { sort: JSON.stringify(params.sort) })
+    ...(params.sort.length > 0 ? { sort: params.sort } : {})
   };
 
   const { data } = useSuspenseQuery(productsQueryOptions(filters));
