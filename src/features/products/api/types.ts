@@ -5,7 +5,7 @@ export type ProductFilters = {
   limit?: number;
   categories?: string;
   search?: string;
-  sort?: string;
+  sort?: string | Record<string, unknown> | Array<unknown>;
 };
 
 export type ProductsResponse = {

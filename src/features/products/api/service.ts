@@ -36,7 +36,16 @@ import type {
 } from './types';
 
 export async function getProducts(filters: ProductFilters): Promise<ProductsResponse> {
-  return fakeProducts.getProducts(filters);
+  const normalizedFilters = {
+    ...filters,
+    sort:
+      typeof filters.sort === 'string'
+        ? filters.sort
+        : filters.sort
+          ? JSON.stringify(filters.sort)
+          : undefined
+  };
+  return fakeProducts.getProducts(normalizedFilters);
 }
 
 export async function getProductById(id: number): Promise<ProductByIdResponse> {

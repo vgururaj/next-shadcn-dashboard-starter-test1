@@ -6,7 +6,21 @@ export type { Product };
 
 export const productKeys = {
   all: ['products'] as const,
-  list: (filters: ProductFilters) => [...productKeys.all, 'list', filters] as const,
+  list: (filters: ProductFilters) =>
+    [
+      ...productKeys.all,
+      'list',
+      {
+        ...filters,
+        page: filters.page ?? 1,
+        limit: filters.limit ?? 10,
+        sort: filters.sort
+          ? typeof filters.sort === 'string'
+            ? filters.sort
+            : JSON.stringify(filters.sort)
+          : undefined
+      }
+    ] as const,
   detail: (id: number) => [...productKeys.all, 'detail', id] as const
 };
 
