@@ -46,19 +46,19 @@ export function RecentSales() {
         <CardTitle>Recent Sales</CardTitle>
         <CardDescription>You made 265 sales this month.</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className='space-y-8'>
+      <CardContent className='min-h-0 flex-1'>
+        <div className='space-y-12'>
           {salesData.map((sale, index) => (
             <div key={index} className='flex items-center'>
-              <Avatar className='h-9 w-9'>
+              <Avatar className='h-9 w-9 shrink-0'>
                 <AvatarImage src={sale.avatar} alt='Avatar' />
                 <AvatarFallback>{sale.fallback}</AvatarFallback>
               </Avatar>
               <div className='ml-4 space-y-1'>
-                <p className='text-sm leading-none font-medium'>{sale.name}</p>
-                <p className='text-muted-foreground text-sm'>{sale.email}</p>
+                <p className='text-sm leading-none font-medium whitespace-nowrap'>{sale.name}</p>
+                <p className='text-muted-foreground text-sm whitespace-nowrap'>{sale.email}</p>
               </div>
-              <div className='ml-auto font-medium'>{sale.amount}</div>
+              <div className='ml-auto shrink-0 font-medium'>{sale.amount}</div>
             </div>
           ))}
         </div>
