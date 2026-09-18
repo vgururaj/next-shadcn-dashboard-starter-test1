@@ -41,7 +41,7 @@ const chartConfig = {
 
 export function AreaGraph() {
   return (
-    <Card>
+    <Card className='h-full'>
       <CardHeader>
         <CardTitle>
           Dotted Area Chart
@@ -52,8 +52,8 @@ export function AreaGraph() {
         </CardTitle>
         <CardDescription>Showing total visitors for the last 6 months</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className='min-h-0 flex-1'>
+        <ChartContainer config={chartConfig} className='aspect-auto h-[280px] w-full'>
           <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} strokeDasharray='3 3' />
             <XAxis
