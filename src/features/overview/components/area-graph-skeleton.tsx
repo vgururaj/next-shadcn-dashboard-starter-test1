@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function AreaGraphSkeleton() {
   return (
-    <Card>
+    <Card className='h-full'>
       <CardHeader>
         <div className='flex items-center gap-2'>
           <Skeleton className='h-6 w-[140px]' />
